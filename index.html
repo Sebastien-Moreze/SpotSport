@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPA avec API</title>
+  <title>Recherche d'équipements sportifs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./index.js" defer></script>
@@ -13,80 +13,99 @@
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <strong>Mon SPA</strong>
+        <strong>Recherche d'équipements sportifs</strong>
       </a>
-    </div>
-    <div class="navbar-menu" name="cp">
-      <div class="navbar-end" name="mot clef">
-        <form id="filter">
-          <input name = "cp" type="text">
-          <input name = "sport" type="text">
-          <label for="name"></label>
-          <button  id="soumettre" name="Soumettre" action="GET">Soumettre</button>
-        </form>
-        <!-- <a class="navbar-item" href="#section1">Section 1</a>
-        <a class="navbar-item" href="#section2">Section 2</a>
-        <a class="navbar-item" href="#section3">Section 3</a> -->
-      </div>
     </div>
   </nav>
 
   <!-- Main Content -->
   <section class="section">
+    <div class="container">
+      <!-- Formulaire de recherche -->
+      <div class="box">
+        <h2 class="title is-4">Quels sports pouvez-vous pratiquer dans votre ville ?</h2>
+        <form id="filter" class="search-form">
+          <div class="field">
+            <label class="label">Ville</label>
+            <div class="control">
+              <input name="ville" type="text" class="input" placeholder="Entrez le nom de votre ville" required>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button type="submit" class="button is-primary is-fullwidth">
+                <span class="icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <span>Découvrir les sports disponibles</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Résultats de recherche -->
+      <div id="results-container" class="mt-5">
+        <div class="container">
+          <!-- Les cartes seront insérées ici -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Template pour les cartes -->
     <template id="template-ground">
-      <div id="template-container" class="columns is-multiline">
-        <!-- Cards will be dynamically inserted here -->
-        <!-- Example of a card -->
-        <div class="column is-one-third">
-          <div class="card">
-            <!-- <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://via.placeholder.com/300x200" alt="Placeholder image">
-              </figure>
-            </div> -->
-            <div class="card-content">
-              <p class="title is-4">Titre de l'élément</p>
-              <p id="description">Description de l'élément.</p>
-              <button class="button is-primary modal-button" data-target="#modal-template">Voir plus</button>
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-content">
+            <p class="title is-4"></p>
+            <div class="tags">
+              <span class="tag is-primary sport-type"></span>
+            </div>
+            <div class="content">
+              <p class="address"></p>
+              <button class="button is-primary voir-plus is-fullwidth">
+                <span>Voir les détails</span>
+                <span class="icon">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
-  </template>
-    <div class="container">
-      <!-- Template Section -->
+    </template>
 
-
-      <!-- Modal -->
-      <template id="modal">
-          <div id="modal-template" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <p class="modal-card-title">Détails</p>
-                <button class="delete" aria-label="close"></button>
-              </header>
-              <section class="modal-card-body">
-                <!-- Contenu dynamique de la modal -->
-                <p>Les détails de l'élément sélectionné apparaîtront ici.</p>
-              </section>
-              <footer class="modal-card-foot">
-                <button class="button is-success">Confirmer</button>
-                <button class="button">Annuler</button>
-              </footer>
-            </div>
-          </div>
-      </template>
-
+    <!-- Modal -->
+    <div id="modal-template" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Détails de l'équipement</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <!-- Le contenu sera inséré dynamiquement -->
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button fermer-modal">Fermer</button>
+        </footer>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="content has-text-centered">
-      <p>&copy; 2023 Mon SPA - Tous droits réservés.</p>
+      <p>
+        <strong>Recherche d'équipements sportifs</strong> - Données fournies par 
+        <a href="https://www.data.gouv.fr/fr/datasets/equipements-sportifs-espaces-et-sites-de-pratiques/" target="_blank" rel="noopener">
+          data.gouv.fr
+        </a>
+      </p>
     </div>
   </footer>
 
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
 </html>
